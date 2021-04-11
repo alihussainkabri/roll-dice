@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main-cube-wrapper {
+            height: 80px;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .wrap {
+            perspective: 1000px;
+            perspective-origin: 50% 50%;
+        }
+
+        .cube {
+            transform-style: preserve-3d;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            animation-name: rotate;
+            animation-duration: 30s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .cube div {
+            position: absolute;
+            opacity: 0.7;
+            width: 80px;
+            height: 80px;
+        }
+
+        .face-1 {
+            background: red;
+            -webkit-transform: rotateY(0deg) translateZ(40px);
+            transform: rotateY(0deg) translateZ(40px);
+        }
+
+        .face-2 {
+            background: green;
+            -webkit-transform: rotateY(90deg) translateZ(40px);
+            transform: rotateY(90deg) translateZ(40px);
+        }
+
+        .face-3 {
+            background: blue;
+            -webkit-transform: rotateY(180deg) translateZ(40px);
+            transform: rotateY(180deg) translateZ(40px);
+        }
+
+        .face-4 {
+            background: yellow;
+            -webkit-transform: rotateY(-90deg) translateZ(40px);
+            transform: rotateY(-90deg) translateZ(40px);
+        }
+
+        .face-5 {
+            background: purple;
+            -webkit-transform: rotateX(90deg) translateZ(40px);
+            transform: rotateX(90deg) translateZ(40px);
+        }
+
+        .face-6 {
+            background: orange;
+            -webkit-transform: rotateX(-90deg) translateZ(40px);
+            transform: rotateX(-90deg) translateZ(40px);
+        }
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 0, 0);
+                transform: rotate3d(0, 0, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: rotate3d(0, 1, 0, 360deg);
+                transform: rotate3d(0, 1, 0, 360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 0, 0);
+                transform: rotate3d(0, 0, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: rotate3d(0, 1, 0, 360deg);
+                transform: rotate3d(0, 1, 0, 360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-cube-wrapper">
+        <div class="wrap">
+            <div class="cube">
+                <div class="face-1"></div>
+                <div class="face-2"></div>
+                <div class="face-3"></div>
+                <div class="face-4"></div>
+                <div class="face-5"></div>
+                <div class="face-6"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

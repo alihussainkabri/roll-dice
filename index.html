@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/App.css">
+    <title>Roll The Dice</title>
+</head>
+
+
+
+<script src="./assets/basics/three.min.js"></script>
+
+<body>
+    <audio src="./assets/sounds/start.mp3" id="startAudio"></audio>
+
+    <audio id="myAudio1">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio2">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio3">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio4">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio5">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="myAudio6">
+        <source src="assets/sounds/DropSound.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+    
+    
+    <audio id="audioGo">
+        <source src="assets/sounds/go.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioRainbow">
+        <source src="assets/sounds/rainbow.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioSad">
+        <source src="assets/sounds/sad.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+    <audio id="audioPlayerScore">
+        <source src="assets/sounds/humanScore.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioRobotScore">
+        <source src="assets/sounds/robotScore.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+    <!--
+    <audio id="audioPlayerSad">
+        <source src="assets/sounds/humanSad.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioRobotSad">
+        <source src="assets/sounds/robotSad.mp3" type="audio/mpeg">
+    </audio>
+    -->
+    
+    <audio id="audioPlayerWin">
+        <source src="assets/sounds/humanWin.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+    <audio id="audioRobotWin">
+        <source src="assets/sounds/robotWin.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+	<audio id="audioRobotLose">
+        <source src="assets/sounds/robotLose.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioPlayerLose">
+        <source src="assets/sounds/humanLose.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+    
+    
+
+    <div class="sound-img" id="img-footer">
+        <img src="./assets/images/sound.png" data-type='play' onclick="changeSound(this)" alt="sound-on">
+    </div>
+
+    <!-- first screen -->
+
+    <div id="first-screen">
+        <!-- <img src="./assets/images/cube-1.jpg" alt=""> -->
+        <div class="main-cube-wrapper">
+            <div class="wrap">
+                <div class="cube">
+                    <div class="face-1"></div>
+                    <div class="face-2"></div>
+                    <div class="face-3"></div>
+                    <div class="face-4"></div>
+                    <div class="face-5"></div>
+                    <div class="face-6"></div>
+                </div>
+            </div>
+        </div>
+        <h1>Welcome to
+            <span class="colorfull-rainbow-letters">
+                <span style="color: red;">R</span>
+                <span style="color: orange;">O</span>
+                <span style="color: yellow;">L</span>
+                <span style="color: green;">L~</span>
+                <span style="color: blue;">A~</span>
+                <span style="color: purple;">R</span>
+                <span style="color: red;">A</span>
+                <span style="color: orange;">I</span>
+                <span style="color: yellow;">N</span>
+                <span style="color: green;">B</span>
+                <span style="color: blue;">O</span>
+                <span style="color: purple;">W</span>
+            </span>
+            !
+        </h1>
+        <div class="d-sm-flex px-3 first-screen-input">
+            <h3>Please type your name: </h3>
+            <input data-time="0" onfocus="playMusic(this)" onkeyup="submitForm(event)" oninput="addTextName(this)" type="text" id="name-val">
+        </div>
+        <button class="disable" type="button" id="play-btn" disabled onclick="toggleNextScreen()">Play</button>
+    </div>
+
+    <!-- Second screen -->
+
+    <div id="second-screen">
+        <div class="d-flex second-screen-upper-boxes">
+            <div id="player-div" class="col-md-2 col-lg-2 col-xl-2 user-player active-player">
+                <p class="d-flex justify-content-center pt-2" id="player-box-name">abc</p>
+                <div class="row px-2 justify-content-between align-items-center user-player-turn-score">
+                    <h4 id="player-turn">Turn: <span id="player-turn-count">0</span> </h4>
+                    <span id="user-score" class="user-player-right-score">0</span>
+                </div>
+            </div>
+            <div id="comp-div" class="col-md-2 col-lg-2 col-xl-2 mr-2 comp-player deactive-player">
+                <img class="pt-2" src="./assets/images/computer.png" alt="">
+                <div class="row px-2 justify-content-between align-items-center user-player-turn-score">
+                    <h4 id="comp-turn">Turn: <span id="comp-turn-count">1</span> </h4>
+                    <span id="computer-score" class="user-player-right-score">0</span>
+                </div>
+            </div>
+        </div>
+
+       <!-- <h3 id="h2-first">It's your turn. Roll the dice</h3> -->
+        <h3 id="h2-second">Click on the colors (or press 1-6 on your keyboard) you want to keep. Then roll again.</h3>
+        <div class="roll-btn">
+            <button class="roll-btn-active" data-type='0' onclick="startRoll(this)" id="roll-btn">Roll</button>
+        </div>
+      
+        <div id="confirm-btn-div">
+            <h3><span id="result-score-confirmation"></span></h3>
+            <div class="my-4 btn-div d-flex keep-score-and-discard-btns">
+                <button class="keep-score-btn mr-5" onclick="keepScore();">Keep score</button>
+                <button class="ml-5" onclick="discardScore();">Discard</button>
+            </div>
+        </div>
+        
+        
+        <div id="game-over-div" style="margin-top: -99px;">
+            <div class="my-4 btn-div d-flex keep-score-and-discard-btns">
+                <button class="" onclick="replay()">Play Again</button>
+            </div>
+        </div>
+
+        <div id="second-screen-1">
+            <div class="row px-2 mt-2 second-screen-cubes w-100 m-0">
+                <div class="col-12" id="mainCanvas">
+                    <!-- <canvas></canvas> -->
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer-div">
+            <div class="d-flex row second-screen-footer w-100">
+                <div class="col-md-6 mr-md-5 second-screen-footer-left">
+                    <p class="text-md-right">Each player gets 3 rolls. The first player to have</p>
+                    <p class="text-md-right">exactly 100 points wins.</p>
+                    <p class="text-md-right">When a player scores they get 3 additional rolls.</p>
+                    <p class="text-md-right">Scoring above 100 is penalized with 100 points</p>
+                </div>
+                <div class="row mt-3 ml-3 ml-md-0 pr-0 col-md-5 col-lg-5 col-xl-4 second-screen-footer-right">
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-7 pl-0">
+                                <div id="score-1" class="pl-3 d-flex footer-score">
+                                    <h5>6 of a color: <span style="color: purple;">WIN</span></h5>
+                                </div>
+                                <div id="score-2" class="pl-3 d-flex footer-score" style="margin-left: 24px;">
+                                    <h5>Rainbow: <span style="color: blue;">50</span></h5>
+                                </div>
+                                <div id="score-3" class="pl-3 d-flex footer-score">
+                                    <h5>5 of a color: <span style="color: green;">40</span></h5>
+                                </div>
+                            </div>
+                            <div class="col-5 pr-0">
+                                <div id="score-4" class="d-flex footer-score">
+                                    <h5>2 + 4: <span style="color: yellow;">30</span></h5>
+                                </div>
+                                <div id="score-5" class="d-flex footer-score">
+                                    <h5>3 + 3: <span style="color: orange;">20</span></h5>
+                                </div>
+                                <div id="score-6" class="d-flex footer-score">
+                                    <h5>2 + 2 + 2: <span style="color: red;">10</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-right" style="margin-top: 6px;margin-right: 21.7rem;color: white;">For more information, write to <span
+                    style="color: red;">www.abc.com</span></p>
+        </div>
+    </div>
+
+
+
+
+    
+	    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+	<script src="./assets/js/main.js"></script>
+    <script src="./assets/js/cube.js"></script>
+    <script src="./assets/js/logics.js"></script>
+    <script src="./assets/js/analysis.js"></script>
+    <script src="./assets/js/machine.js"></script>
+    
+</body>
+
+</html>
